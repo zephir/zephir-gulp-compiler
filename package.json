@@ -24,7 +24,7 @@
     "url": "https://github.com/zephir/zephir-gulp-compiler/issues"
   },
   "homepage": "https://github.com/zephir/zephir-gulp-compiler#readme",
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.1"
   }
 }
