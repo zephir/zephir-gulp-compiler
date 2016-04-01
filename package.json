@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/zephir/zephir-gulp-compiler#readme",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "yargs": "^4.3.2"
   }
 }
