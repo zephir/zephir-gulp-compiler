@@ -1,8 +1,12 @@
-// THIS IS JUST A TEST
+return module.exports = {
 
-// Include gulp
-var gulp = require('gulp');
+    gulp: require('gulp'),
 
-gulp.task('default', function() {
-    console.log("SUCCESS!");
-});
+    init: function() {
+
+        gulp.task('default', function() {
+            console.log("SUCCESS!");
+        });
+        
+    }
+};
