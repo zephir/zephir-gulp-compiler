@@ -113,13 +113,13 @@ zephirWorkflow( require('gulp'), {
 
 ## Enviroments
 
-This gulp supports 4 enviroments. These enviroments change the place the compiled stuff is put in.
+This gulp workflow supports 4 enviroments. These enviroments change the place the compiled stuff is put in.
 
-| Enviroment        | Use case                                                                                          | Default folders |
-| -------------     | ------------------------------------------------------------------------------------------------- | --------------- |
-| --local (default) | Local development. Will not be pushed into git repo to prevent merge conflicts.                   | local/          |
-| --dev             | Development. Only visible to developer and designer (agency). Example domain: dev.[domain].[tld]  | dev/            |
-| --prep            | Preproduction. Visible to the two above and the customer.                                         | prep/           |
-| --prod            | Production / Live. Visible to everyone.                                                           | prod/           |
+| Enviroment        | Use case                                                                                            | Default folders |
+| -------------     | --------------------------------------------------------------------------------------------------- | --------------- |
+| --local (default) | Local development. Will not be pushed into git repo to prevent merge conflicts.                     | local/          |
+| --dev             | Development. Only visible to developer and designer (agency). Example domain: `dev.[domain].[tld]`  | dev/            |
+| --prep            | Preproduction. Visible to the two above and the customer. Example domain: `prep.[domain].[tld]`     | prep/           |
+| --prod            | Production / Live. Visible to everyone.                                                             | prod/           |
 
-
+> These are all just some examples. You don't have to use the enviroments that way!
