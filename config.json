@@ -5,7 +5,7 @@
 
     "source": {
         "styles": [
-            "src/**/*.scss"
+            "scss/**/*.scss"
         ],
         "scripts": [
             "js/libs/1/*.js",
