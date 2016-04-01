@@ -1,0 +1,30 @@
+{
+  "name": "zephir-gulp-compiler",
+  "version": "1.0.0",
+  "description": "The default gulp workflow used by Zephir. Meant to be highly configurable and especially prepared for the LUYA CMS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zephir/zephir-gulp-compiler.git"
+  },
+  "keywords": [
+    "gulp",
+    "workflow",
+    "scss",
+    "js",
+    "images",
+    "luya"
+  ],
+  "author": "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zephir/zephir-gulp-compiler/issues"
+  },
+  "homepage": "https://github.com/zephir/zephir-gulp-compiler#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
