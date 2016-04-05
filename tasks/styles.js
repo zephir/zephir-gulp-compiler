@@ -2,10 +2,12 @@ module.exports = function(gulp, plugins, config) {
 
     gulp.task('styles', function() {
 
+        plugins.logger.info('Scripts: ' + config.source.styles + ' -> ' + config.dest.styles);
+
         // Define postCSS Processors
         var postcssProcessors = [
             plugins.autoprefixer({browsers: ['> 1%']}),                             // Run autoprefixer
-            plugins.pxtorem({replace: false, rootValue: config.configs.baseFontSize})       // Add rem with px as fallback
+            plugins.pxtorem({replace: false, rootValue: config.baseFontSize})       // Add rem with px as fallback
         ];
 
         // Delete existing styles

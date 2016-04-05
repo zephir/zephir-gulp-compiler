@@ -2,6 +2,8 @@ module.exports = function(gulp, plugins, config) {
 
     gulp.task('scripts', function() {
 
+        plugins.logger.info('Scripts: ' + config.source.scripts + ' -> ' + config.dest.scripts);
+
         // Delete existing styles
         plugins.del([config.dest.scripts]);
 

@@ -11,6 +11,7 @@ I listed all plugins below.
 * [yargs](https://www.npmjs.com/package/yargs)
 * [require-dir](https://www.npmjs.com/package/require-dir)
 * [del](https://www.npmjs.com/package/del)
+* [chalk](https://github.com/chalk/chalk)
 
 ### Gulp plugins
 * [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
