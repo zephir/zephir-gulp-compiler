@@ -17,7 +17,7 @@ module.exports = function(gulp, plugins, config) {
 
             // LOCAL
 
-            return gulp.src(config.source.styles)
+            gulp.src(config.source.styles)
                 .pipe( plugins.sass().on('error', function(error) {
                     plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
                 }) )
@@ -29,7 +29,7 @@ module.exports = function(gulp, plugins, config) {
 
             // DEV, PREP or PROD
 
-            return gulp.src(config.source.styles)
+            gulp.src(config.source.styles)
                 .pipe( plugins.sourcemaps.init() )
                 .pipe( plugins.sass().on('error',  function(error) {
                     plugins.logger.error(error.relativePath + "\n\r" + error.formatted);

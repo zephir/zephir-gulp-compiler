@@ -10,7 +10,7 @@ module.exports = function(gulp, plugins, config) {
         if(config.env == "local") {
 
             // LOCAL
-            return gulp.src(config.source.scripts)
+            gulp.src(config.source.scripts)
                 .pipe( plugins.sourcemaps.init() )              // Init of sourcemaps
                 .pipe( plugins.concat('main.min.js') )
                 .pipe( plugins.sourcemaps.write('.') )          // Write the sourcemaps
@@ -20,7 +20,7 @@ module.exports = function(gulp, plugins, config) {
         } else {
 
             // DEV, PREP or PROD
-            return gulp.src(config.source.scripts)
+            gulp.src(config.source.scripts)
                 .pipe( plugins.sourcemaps.init() )              // Init of sourcemaps
                 .pipe( plugins.uglify().on('error', function(err) { plugins.logger.error(err.toString()) }) )                       // Minify js
                 .pipe( plugins.concat('main.min.js') )

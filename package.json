@@ -1,6 +1,6 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "The default gulp workflow used by Zephir. Meant to be highly configurable and especially prepared for the LUYA CMS.",
   "main": "index.js",
   "scripts": {
