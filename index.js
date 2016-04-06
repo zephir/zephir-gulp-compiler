@@ -32,7 +32,7 @@ module.exports = function (gulp, userConfig) {
                     plugins.chalk.green(message)
                 );
             },
-            fail: function(message) {
+            error: function(message) {
                 var time = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric", second: "numeric"});
                 console.log(
                     plugins.chalk.cyan('[' + time + '] ') +

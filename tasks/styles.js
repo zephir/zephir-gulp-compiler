@@ -19,9 +19,9 @@ module.exports = function(gulp, plugins, config) {
 
             return gulp.src(config.source.styles)
                 .pipe( plugins.sass().on('error', function(error) {
-                    console.log(error.relativePath + "\n\r" + error.formatted);
+                    plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
                 }) )
-                .pipe( plugins.postcss(postcssProcessors) )
+                .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
                 .pipe( gulp.dest(config.dest.styles) )
             ;
 
@@ -32,10 +32,10 @@ module.exports = function(gulp, plugins, config) {
             return gulp.src(config.source.styles)
                 .pipe( plugins.sourcemaps.init() )
                 .pipe( plugins.sass().on('error',  function(error) {
-                    console.log(error.relativePath + "\n\r" + error.formatted);
+                    plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
                 }) )
-                .pipe( plugins.postcss(postcssProcessors) )
-                .pipe( plugins.postcss([plugins.cssnano()]) )
+                .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
+                .pipe( plugins.postcss([plugins.cssnano()]).on('error', function(error) { plugins.logger.error(error.toString()) }) )
                 .pipe( plugins.sourcemaps.write('.') )
                 .pipe( gulp.dest(config.dest.styles) )
             ;
