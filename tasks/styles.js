@@ -7,40 +7,23 @@ module.exports = function(gulp, plugins, config) {
         // Define postCSS Processors
         var postcssProcessors = [
             plugins.autoprefixer({browsers: ['> 1%']}),                             // Run autoprefixer
-            plugins.pxtorem({replace: false, rootValue: config.baseFontSize})       // Add rem with px as fallback
+            plugins.pxtorem({replace: false, rootValue: config.configs.baseFontSize})       // Add rem with px as fallback
         ];
 
         // Delete existing styles
-        plugins.del([config.dest.styles]);
+        // plugins.del([config.dest.styles]);
 
-        if(config.env == "local") {
-
-            // LOCAL
-
-            gulp.src(config.source.styles)
-                .pipe( plugins.sass().on('error', function(error) {
-                    plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
-                }) )
-                .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
-                .pipe( gulp.dest(config.dest.styles) )
-            ;
-
-        } else {
-
-            // DEV, PREP or PROD
-
-            gulp.src(config.source.styles)
-                .pipe( plugins.sourcemaps.init() )
-                .pipe( plugins.sass().on('error',  function(error) {
-                    plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
-                }) )
-                .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
-                .pipe( plugins.postcss([plugins.cssnano()]).on('error', function(error) { plugins.logger.error(error.toString()) }) )
-                .pipe( plugins.sourcemaps.write('.') )
-                .pipe( gulp.dest(config.dest.styles) )
-            ;
-
-        }
+        gulp.src(config.source.styles)
+            .pipe( plugins.gulpif(config.env != "local", plugins.sourcemaps.init()) )
+            .pipe( plugins.sass().on('error', function(error) {
+                plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
+            }) )
+            .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
+            .pipe( plugins.gulpif(config.env != "local", plugins.postcss([plugins.cssnano()]).on('error', function(error) { plugins.logger.error(error.toString()) })) )
+            .pipe( plugins.gulpif(config.env != "local", plugins.sourcemaps.write('.')) )
+            .pipe( gulp.dest(config.dest.styles) )
+            .pipe( plugins.gulpif(config.env == "local" && config.configs.enableBrowserSync === true, plugins.browserSync.stream()) )
+        ;
 
     });
 

@@ -9,7 +9,7 @@ module.exports = function (gulp, userConfig) {
         argv            : require('yargs').argv,            // Used to get arguments from command line
         requireDir      : require('require-dir'),           // Well be used to import tasks from tasks directory
         del             : require('del'),                   // Delete stuff
-        chalk           : require('chalk'),                 // Used for better logging
+        browserSync     : require('browser-sync').create(), // Browsersync to automatically update browser synchronize everything
 
         // Gulp plugins
         sourcemaps      : require('gulp-sourcemaps'),       // Sourcemap generation
@@ -17,6 +17,7 @@ module.exports = function (gulp, userConfig) {
         postcss         : require('gulp-postcss'),          // PostCSS compiler for plugins
         uglify          : require('gulp-uglify'),           // Minify js
         concat          : require('gulp-concat'),           // Concat files
+        gulpif          : require('gulp-if'),               // Conditionals for pipe()
 
         // PostCSS Plugins
         autoprefixer    : require('autoprefixer'),          // Autoprefix
@@ -24,36 +25,7 @@ module.exports = function (gulp, userConfig) {
         pxtorem         : require('postcss-pxtorem'),       // Convert px values to rem based on baseFontSize
 
         // Custom function for easier loggin with chalk
-        logger          : {
-            success: function(message) {
-                var time = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric", second: "numeric"});
-                console.log(
-                    plugins.chalk.cyan('[' + time + '] ') +
-                    plugins.chalk.green(message)
-                );
-            },
-            error: function(message) {
-                var time = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric", second: "numeric"});
-                console.log(
-                    plugins.chalk.cyan('[' + time + '] ') +
-                    plugins.chalk.red(message)
-                );
-            },
-            warning: function(message) {
-                var time = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric", second: "numeric"});
-                console.log(
-                    plugins.chalk.cyan('[' + time + '] ') +
-                    plugins.chalk.yellow(message)
-                );
-            },
-            info: function(message) {
-                var time = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric", second: "numeric"});
-                console.log(
-                    plugins.chalk.cyan('[' + time + '] ') +
-                    plugins.chalk.blue(message)
-                );
-            },
-        }
+        logger          : require('./helpers/logger.js')
     };
 
     var config = require('./config.json');
@@ -72,7 +44,12 @@ module.exports = function (gulp, userConfig) {
     config.dest = config.dest[config.env];
 
     plugins.logger.success("Starting.");
+    
+    // Log enviroment and configs
     plugins.logger.info("Enviroment: " + config.env);
+    for (var configName in config.configs) {
+        plugins.logger.info(configName + ': ' + config.configs[configName]);
+    }
 
     // Init all tasks
     var tasks = plugins.requireDir('./tasks');

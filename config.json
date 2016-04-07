@@ -1,9 +1,14 @@
 {
     "configs": {
-        "baseFontSize": 16
+        "baseFontSize": 16,
+        "enableBrowserSync": true,
+        "browserSyncHost": "localhost"
     },
 
     "source": {
+        "filesToWatch": [
+            "../**/*.php"
+        ],
         "styles": [
             "scss/**/*.scss"
         ],

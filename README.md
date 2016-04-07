@@ -12,6 +12,7 @@ I listed all plugins below.
 * [require-dir](https://www.npmjs.com/package/require-dir)
 * [del](https://www.npmjs.com/package/del)
 * [chalk](https://github.com/chalk/chalk)
+* [browsersync](https://www.browsersync.io/)
 
 ### Gulp plugins
 * [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
@@ -19,6 +20,7 @@ I listed all plugins below.
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 * [gulp-concat](https://www.npmjs.com/package/gulp-concat)
 * [gulp-postcss](https://github.com/postcss/gulp-postcss)
+* [gulp-if](https://github.com/robrich/gulp-if)
 
 ### PostCSS plugins
 * [autoprefixer](https://github.com/postcss/autoprefixer)
@@ -60,24 +62,36 @@ zephirWorkflow( require('gulp'), {} );
 The second parameter of zephirWorkflow in the example above are options. They'll merge into the existing config object.
 
 **Example:**
+
 ```
 zephirWorkflow( require('gulp'), {
     "configs": {
-        "baseFontSize": 18
+        "baseFontSize": 18,
+    },
+    "source": {
+        "filesToWatch": [
+            "**/*.php"
+        ],
     }
 } );
 ```
 
 **Default config:**
+
 ```
 {
     "configs": {
-        "baseFontSize": 16
+        "baseFontSize": 16,
+        "enableBrowserSync": true,
+        "browserSyncHost": "localhost"
     },
 
     "source": {
+        "filesToWatch": [
+            "../**/*.php"
+        ],
         "styles": [
-            "src/**/*.scss"
+            "scss/**/*.scss"
         ],
         "scripts": [
             "js/libs/1/*.js",
@@ -110,6 +124,7 @@ zephirWorkflow( require('gulp'), {
         }
     }
 }
+
 ```
 
 ## Enviroments
