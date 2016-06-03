@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, config) {
 
         // Define postCSS Processors
         var postcssProcessors = [
-            plugins.autoprefixer({browsers: ['> 1%']}),                             // Run autoprefixer
+            plugins.autoprefixer({browsers: ['> 0.1%']}),                             // Run autoprefixer
             plugins.pxtorem({replace: false, rootValue: config.configs.baseFontSize})       // Add rem with px as fallback
         ];
 
@@ -18,8 +18,8 @@ module.exports = function(gulp, plugins, config) {
             .pipe( plugins.sass().on('error', function(error) {
                 plugins.logger.error(error.relativePath + "\n\r" + error.formatted);
             }) )
-            .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
             .pipe( plugins.gulpif(config.env != "local", plugins.postcss([plugins.cssnano()]).on('error', function(error) { plugins.logger.error(error.toString()) })) )
+            .pipe( plugins.postcss(postcssProcessors).on('error', function(error) { plugins.logger.error(error.toString()) }) )
             .pipe( plugins.gulpif(config.env != "local", plugins.sourcemaps.write('.')) )
             .pipe( gulp.dest(config.dest.styles) )
             .pipe( plugins.gulpif(config.env == "local" && config.configs.enableBrowserSync === true, plugins.browserSync.stream()) )
