@@ -1,4 +1,5 @@
 [![bitHound Code](https://www.bithound.io/github/zephir/zephir-gulp-workflow/badges/code.svg)](https://www.bithound.io/github/zephir/zephir-gulp-workflow)
+[![bitHound Dependencies](https://www.bithound.io/github/zephir/zephir-gulp-workflow/badges/dependencies.svg)](https://www.bithound.io/github/zephir/zephir-gulp-workflow/master/dependencies/npm)
 
 # Zephir GULP Workflow
 
