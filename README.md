@@ -1,3 +1,5 @@
+[![bitHound Code](https://www.bithound.io/github/zephir/zephir-gulp-workflow/badges/code.svg)](https://www.bithound.io/github/zephir/zephir-gulp-workflow)
+
 # Zephir GULP Workflow
 
 This is the default [Gulp](http://gulpjs.com/) workflow Zephir is working with.
