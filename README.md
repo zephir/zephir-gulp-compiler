@@ -46,10 +46,13 @@ First of all, you need at least these two dependencies in your project:
 > Please note that the gulp version in the example above may vary.
 
 You can accomplish that by using the following commands:
+
 ```
 npm install --save gulp
 npm install --save zephir/zephir-gulp-workflow
 ```
+
+> On Ubuntu the latest versions of nodejs is not available. Install nodejs manually [Example install Guide](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/)
 
 ### Gulpfile
 
