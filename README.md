@@ -1,9 +1,12 @@
-[![bitHound Code](https://www.bithound.io/github/zephir/zephir-gulp-workflow/badges/code.svg)](https://www.bithound.io/github/zephir/zephir-gulp-workflow)
-[![bitHound Dependencies](https://www.bithound.io/github/zephir/zephir-gulp-workflow/badges/dependencies.svg)](https://www.bithound.io/github/zephir/zephir-gulp-workflow/master/dependencies/npm)
-
 # Zephir GULP Workflow
 
 This is the default [Gulp](http://gulpjs.com/) workflow Zephir is working with.
+
+## You'll need the following tools preinstalled
+
+
+* [Nodejs](https://nodejs.org/en/) ([Example install guide for Ubuntu](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/))
+* [Gulpjs](http://gulpjs.com/) (`npm install --global gulp-cli`)
 
 ## Plugins
 
@@ -52,7 +55,7 @@ npm install --save gulp
 npm install --save zephir/zephir-gulp-workflow
 ```
 
-> On Ubuntu the latest versions of nodejs is not available. Install nodejs manually [Example install Guide](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/)
+> On Ubuntu the latest versions of nodejs is not available. Install nodejs manually [Example install guide](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/)
 
 ### Gulpfile
 
