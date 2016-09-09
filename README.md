@@ -136,6 +136,10 @@ zephirWorkflow( require('gulp'), {
 
 ```
 
+## Run
+
+In order to start the gulp workflow, run `gulp watch` command or for a defined environemnt run `gulp watch --prod`. 
+
 ## Enviroments
 
 This gulp workflow supports 4 enviroments. These enviroments change the place the compiled stuff is put in.
