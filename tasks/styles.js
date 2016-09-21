@@ -6,8 +6,12 @@ module.exports = function(gulp, plugins, config) {
 
         // Define postCSS Processors
         var postcssProcessors = [
-            plugins.autoprefixer({browsers: ['> 0.1%']}),                             // Run autoprefixer
-            plugins.pxtorem({replace: false, rootValue: config.configs.baseFontSize})       // Add rem with px as fallback
+            plugins.autoprefixer({browsers: ['> 0.1%']}), // Run autoprefixer
+            plugins.pxtorem({
+                replace: false,
+                rootValue: config.configs.pxtorem.baseFontSize,
+                selectorBlackList: config.configs.pxtorem.selectorBlackList
+            }) // Add rem with px as fallback
         ];
 
         // Delete existing styles

@@ -1,8 +1,11 @@
 {
     "configs": {
-        "baseFontSize": 16,
         "enableBrowserSync": true,
-        "browserSyncHost": "localhost"
+        "browserSyncHost": "localhost",
+        "pxtorem": {
+            "baseFontSize": 16,
+            "selectorBlackList": [/^html$/]
+        }
     },
 
     "source": {
