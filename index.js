@@ -28,7 +28,7 @@ module.exports = function (gulp, userConfig) {
         logger          : require('./helpers/logger.js')
     };
 
-    var config = require('./config.json');
+    var config = require('./config.js');
     config = plugins.extend(true, config, userConfig);
 
     // Try to determine enviroment. If nothing's given, use "local".

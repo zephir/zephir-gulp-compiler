@@ -1,6 +1,6 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "The default gulp workflow used by Zephir. Meant to be highly configurable and especially prepared for the LUYA CMS.",
   "main": "index.js",
   "scripts": {
@@ -40,10 +40,10 @@
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^2.0.0",
     "postcss-pxtorem": "^3.3.1",
     "require-dir": "^0.3.0",
-    "yargs": "^4.3.2"
+    "yargs": "^5.0.0"
   },
   "gitHead": "de14e186ecebd9fdbe29b05423aaaede6e21def3",
   "readme": "# zephir-gulp-workflow\nThe gulp workflow used by Zephir for all Projects.\n",

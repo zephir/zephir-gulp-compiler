@@ -1,4 +1,4 @@
-{
+module.exports = {
     "configs": {
         "enableBrowserSync": true,
         "browserSyncHost": "localhost",
@@ -45,4 +45,4 @@
             "scripts": "prod/js/"
         }
     }
-}
+};
