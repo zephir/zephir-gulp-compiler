@@ -4,9 +4,11 @@ This is the default [Gulp](http://gulpjs.com/) workflow Zephir is working with.
 
 ## You'll need the following tools preinstalled
 
-
 * [Nodejs](https://nodejs.org/en/) ([Example install guide for Ubuntu](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/))
 * [Gulpjs](http://gulpjs.com/) (`npm install --global gulp-cli`)
+
+> Hint  
+> If you got permission errors while installing gulp-cli you might use `sudo` but it is not recommended.
 
 ## Plugins
 
