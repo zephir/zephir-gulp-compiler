@@ -45,7 +45,7 @@ First of all, you need at least these two dependencies in your project:
 ```
 "dependencies": {
     "gulp": "^3.9.1",
-    "zephir-gulp-workflow": "zephir/zephir-gulp-workflow"
+    "zephir-gulp-workflow": "0.0.8"
 }
 ```
 > Please note that the gulp version in the example above may vary.
