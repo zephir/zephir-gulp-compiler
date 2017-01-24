@@ -10,7 +10,8 @@ module.exports = {
 
     "source": {
         "filesToWatch": [
-            "../**/*.php"
+            "../**/*.php",
+            "../**/*.html"
         ],
         "styles": [
             "scss/**/*.scss"
