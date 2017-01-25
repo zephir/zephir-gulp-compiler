@@ -54,7 +54,7 @@ You can accomplish that by using the following commands:
 
 ```
 npm install --save gulp
-npm install --save zephir/zephir-gulp-workflow@"~1.0.0"
+npm install --save zephir-gulp-workflow@"~1.0.0"
 ```
 
 > On Ubuntu the latest versions of nodejs is not available. Install nodejs manually [Example install guide](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/)
