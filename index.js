@@ -31,6 +31,7 @@ module.exports = function (gulp, userConfig) {
     var config = require('./config.js');
     config = plugins.extend(true, config, userConfig);
 
+
     // Try to determine enviroment. If nothing's given, use "local".
     config.env = "local";
     if (plugins.argv.dev == true) {
@@ -48,7 +49,7 @@ module.exports = function (gulp, userConfig) {
     // Log enviroment and configs
     plugins.logger.info("Enviroment: " + config.env);
     for (var configName in config.configs) {
-        plugins.logger.info(configName + ': ' + config.configs[configName]);
+        plugins.logger.info(configName + ': ' + (typeof config.configs[configName] === 'object' ? JSON.stringify(config.configs[configName]) : config.configs[configName]));
     }
 
     // Init all tasks

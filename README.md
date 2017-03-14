@@ -12,7 +12,7 @@ This is the default [Gulp](http://gulpjs.com/) workflow Zephir is working with.
 
 ## Plugins
 
-I listed all plugins below.
+All plugins are listed below.
 
 ### Node plugins
 * [extend](https://www.npmjs.com/package/extend)
@@ -94,7 +94,11 @@ zephirWorkflow( require('gulp'), {
     "configs": {
         "baseFontSize": 16,
         "enableBrowserSync": true,
-        "browserSyncHost": "localhost"
+        "browserSyncHost": "localhost",
+        "pxtorem": {
+            "baseFontSize": 16,
+            "selectorBlackList": [/^html$/]
+        }
     },
 
     "source": {
@@ -153,4 +157,4 @@ This gulp workflow supports 4 enviroments. These enviroments change the place th
 | --prep            | Preproduction. Visible to the two above and the customer. Example domain: `prep.[domain].[tld]`     | prep/           |
 | --prod            | Production / Live. Visible to everyone.                                                             | prod/           |
 
-> These are all just some examples. You don't have to use the enviroments that way!
+> These are all just examples. You don't have to use the enviroments that way!
