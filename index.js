@@ -58,6 +58,8 @@ module.exports = function (gulp, userConfig) {
         }
     }
 
+    config = userConfig;
+
     // Try to determine enviroment. If nothing's given, use "local".
     config.env = "local";
     if (plugins.argv.dev == true) {

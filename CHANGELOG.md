@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## 1.0.3 (in progress)
+## 1.0.4 (in progress)
+
+## 1.0.3
+
+* Fixed a small bug where config wasn't overwritten at all
 
 ## 1.0.2
 
