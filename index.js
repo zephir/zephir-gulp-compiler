@@ -29,8 +29,34 @@ module.exports = function (gulp, userConfig) {
     };
 
     var config = require('./config.js');
-    config = plugins.extend(true, config, userConfig);
 
+    if(typeof userConfig.configs == 'undefined') {
+        userConfig.configs = {};
+    }
+    if(typeof userConfig.source == 'undefined') {
+        userConfig.source = {};
+    }
+    if(typeof userConfig.dest == 'undefined') {
+        userConfig.dest = {};
+    }
+
+    for (var configName in config.configs) {
+        if(typeof userConfig.configs[configName] == 'undefined') {
+            userConfig.configs[configName] = config.configs[configName];
+        }
+    }
+
+    for (var configName in config.source) {
+        if(typeof userConfig.source[configName] == 'undefined') {
+            userConfig.source[configName] = config.source[configName];
+        }
+    }
+
+    for (var configName in config.dest) {
+        if(typeof userConfig.dest[configName] == 'undefined') {
+            userConfig.dest[configName] = config.dest[configName];
+        }
+    }
 
     // Try to determine enviroment. If nothing's given, use "local".
     config.env = "local";

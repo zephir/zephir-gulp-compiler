@@ -45,7 +45,7 @@ First of all, you need at least these two dependencies in your project:
 ```
 "dependencies": {
     "gulp": "^3.9.1",
-    "zephir-gulp-workflow": "~1.0.0"
+    "zephir-gulp-workflow": "~1.0.2"
 }
 ```
 > Please note that the gulp version in the example above may vary.
@@ -54,7 +54,7 @@ You can accomplish that by using the following commands:
 
 ```
 npm install --save gulp
-npm install --save zephir-gulp-workflow@"~1.0.0"
+npm install --save zephir-gulp-workflow@"~1.0.2"
 ```
 
 > On Ubuntu the latest versions of nodejs is not available. Install nodejs manually [Example install guide](https://by-example.org/install-node-js-6-on-ubuntu-16-04-xenial-xerus-lts/)
@@ -92,7 +92,6 @@ zephirWorkflow( require('gulp'), {
 ```
 {
     "configs": {
-        "baseFontSize": 16,
         "enableBrowserSync": true,
         "browserSyncHost": "localhost",
         "pxtorem": {
@@ -103,7 +102,8 @@ zephirWorkflow( require('gulp'), {
 
     "source": {
         "filesToWatch": [
-            "../**/*.php"
+            "../**/*.php",
+            "../**/*.html"
         ],
         "styles": [
             "scss/**/*.scss"
