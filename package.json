@@ -1,6 +1,6 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "workflow.js",
   "author": "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
