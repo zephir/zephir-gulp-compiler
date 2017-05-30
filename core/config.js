@@ -19,13 +19,14 @@ var configVersionsDifferent = function() {
 };
 
 var config = function() {
+    var defaultConfig = require(global.moduleRootDir + '/defaultConfig.js');
 
     if(!compileCnfigExists()) {
         writeDefaultConfig();
     }
 
     if(configVersionsDifferent()) {
-        console.info("The defaultConfig was updated! Be sure to update you compileConfig accordingly.");
+        console.info("The defaultConfig was updated! Be sure to update you compileConfig accordingly. New version: " + defaultConfig.version);
     }
 
     return require(global.appRootDir + '/compileConfig.js');
