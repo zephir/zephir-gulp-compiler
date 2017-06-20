@@ -12,7 +12,7 @@ module.exports = function(gulp, config, paths) {
 
             var buffer = gulp.src(source);
 
-            buffer = buffer.pipe(sass().on('error', sass.logError));
+            buffer = buffer.pipe(sass(config.scss.config).on('error', sass.logError));
 
             if(isEnabled(config.autoprefixer.enabled)) {
                 buffer = require('./autoprefixer.js')(buffer, config.autoprefixer.config);

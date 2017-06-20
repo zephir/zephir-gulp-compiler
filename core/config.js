@@ -26,7 +26,7 @@ var config = function() {
     }
 
     if(configVersionsDifferent()) {
-        console.info("The defaultConfig was updated! Be sure to update you compileConfig accordingly. New version: " + defaultConfig.version);
+        console.info("The defaultConfig was updated! Make sure to update you compileConfig accordingly. New version: " + defaultConfig.version);
     }
 
     return require(global.appRootDir + '/compileConfig.js');

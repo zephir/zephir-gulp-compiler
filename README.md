@@ -1,14 +1,16 @@
 # Zephir Gulp Workflow
 
-The Zephir Gulp Workflow is intended to be highly configurable without having to write a new GULP Workflow everytime. This helps to keep every project setup as easy and neat as possible. 
+The Zephir Gulp Workflow is intended to be highly configurable without having to write a new GULP Workflow everytime. 
+This helps to keep every project setup as easy and neat as possible. 
 
 ## Requirements
 
 | Tool | Version |
-| ----- | -------- |
+| ---- | ------- |
 | Node | 6.x.x   |
 | NPM  | 4.x.x   |
-| GULP | 3.9.x  |
+| GULP | 3.9.x   |
+
 
 ## Installation
 
@@ -156,3 +158,12 @@ With the "environments" you can easily define a new folder to be compiled to. Th
 You can define your own environments or not use them at all. Be aware that you have to change the default Configuration of `cleanCSS.enabled` to `true`.
 
 ## Run / Commands
+
+
+### Testing
+
+[Mocha](https://mochajs.org/) is included to simply run and build unit tests for js files.
+
+Simply type `npm test` in terminal from your project root ( where gulpfile.js is located ).
+git
+

@@ -4,7 +4,9 @@ module.exports = {
 
     css: {
         scss: {
-            config: {}
+            config: {
+                outputStyle: 'compressed' // nested, compact, expanded and compressed are available options
+            }
         },
         autoprefixer: {
             enabled: true,
@@ -62,10 +64,10 @@ module.exports = {
         css: {
             "{env}/css/main1and2/": ['scss/main1.scss', 'scss/main2.scss'],
             "{env}/css/mainAll/": ['scss/main*.scss'],
-            "{env}/css/all/": ['scss/*.scss']
+            "{env}/css/all/": ['scss/**/*.scss']
         },
         js: {
-            "{env}/js/main.js": ['js/**/*.js'],
+            "{env}/js/main.min.js": ['js/**/*.js'],
             "{env}/jsDir/": ['js/**/*.js']
         },
         images: {
