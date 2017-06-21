@@ -1,1 +1,0 @@
-export const testConstant = 'TESTCASE';  

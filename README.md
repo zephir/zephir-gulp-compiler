@@ -164,6 +164,6 @@ You can define your own environments or not use them at all. Be aware that you h
 
 [Mocha](https://mochajs.org/) is included to simply run and build unit tests for js files.
 
-Simply type `npm test` in terminal from your project root ( where gulpfile.js is located ).
-git
+Simply type `npm test` in terminal from your project root (where the gulpfile.js is located).
 
+The files for unit tests are located in directory `test`, all unit tests are wiritten in `test/test.js`.
