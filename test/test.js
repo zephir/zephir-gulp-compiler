@@ -1,4 +1,6 @@
 require('./globalVars.js');
+var assert = require('assert');
+var fs = require('fs');
 
 var testConfig = {
 
@@ -42,50 +44,54 @@ var testConfig = {
 
     paths: {
         js: {
-            "./test/output/test.js": ['./test/input/js/*.js']
+            "./test/output/js/test.js":['./test/input/js/**/*.js']
         },
         css: {
-            "./test/output/test.css": ['./test/input/**/*.scss']
+            "./test/output/":['./test/input/**/*.scss']
         }
     }
 
 };
 
-// One basic idea to write unit tests ...
 
-var assert = require('assert');
 
-var getSilvan = function(name) {
+require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
+gulp.start('js');
 
-    if (name == "silvan") {
+require(__dirname + '/../tasks/css/task.js')(gulp, testConfig.css, testConfig.paths.css);
+gulp.start('css');
+
+var jsInput = fs.readFileSync('./test/input/compiled/js/test.js', 'utf8');
+var jsOutput = fs.readFileSync('./test/output/js/test.js', 'utf8');
+
+var cssInput = fs.readFileSync('./test/input/compiled/css/main.css', 'utf8');
+var cssOutput = fs.readFileSync('./test/output/css/main.css', 'utf8');
+
+var compareFiles = function(id) {
+
+    if (id == "js" && jsInput === jsOutput) {
+        return true;
+    }
+
+    if (id == "css" && cssInput === cssOutput) {
         return true;
     }
 
     return false;
 };
 
-// Ende
 
-describe('Testing Gulp tasks', function() {
+describe('Gulp tasks testing', function() {
 
+        describe('CSS compiling and compression ... ', function() {
+            it("Test was done", function() {
+                assert.equal(true, compareFiles("css"));
+            })
+        });
+        describe('Testing JS compression ... ', function() {
 
-    console.log('whaat');
-
-    /*testConfig.paths.js = {
-        "./test/output/test.js": ['./test/input/js/*.js']
-    }; */
-
-    require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
-    gulp.start('js');
-
-    describe('Testing CSS compiling and compression ... ', function() {
-        it("Passed, this test was successfull", function() {
-            assert.equal(true, getSilvan("silvan"));
-        })
+            it("Test was done", function() {
+                assert.equal(true, compareFiles("js"));
+            })
+        });
     });
-    describe('Testing Image compression ... ', function() {
-        it("Passed, this test was successfull", function() {
-            assert.equal(false, getSilvan("basil"));
-        })
-    });
-});

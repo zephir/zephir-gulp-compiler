@@ -1,6 +1,9 @@
 var fs = require('fs'),
     del = require('del');
 
+imagemin = require('gulp-imagemin');
+
+
 global = {};
 
 isEnabled = require('./helpers/isEnabled.js');

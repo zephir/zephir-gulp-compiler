@@ -44,10 +44,10 @@ module.exports = {
         imagemin: {
             enabled: true,
             config: [
-                require('gulp-imagemin').gifsicle({interlaced: true}),
-                require('gulp-imagemin').jpegtran({progressive: true}),
-                require('gulp-imagemin').optipng({optimizationLevel: 5}),
-                require('gulp-imagemin').svgo({plugins: [{removeViewBox: true}]})
+                imagemin.gifsicle({interlaced: true}),
+                imagemin.jpegtran({progressive: true}),
+                imagemin.optipng({optimizationLevel: 5}),
+                imagemin.svgo({plugins: [{removeViewBox: true}]})
             ]
         }
     },
@@ -61,10 +61,13 @@ module.exports = {
     },
 
     paths: {
+            // "DESTINATION" : ['SOURCE']
         css: {
             "{env}/css/main1and2/": ['scss/main1.scss', 'scss/main2.scss'],
             "{env}/css/mainAll/": ['scss/main*.scss'],
             "{env}/css/all/": ['scss/**/*.scss']
+            // "{env}/css/mainAll/": ['sass/main*.scss'] // Please make sure, that your compiled files pointing to an unique destination.
+            // "{env}/css/all/": ['sass/**/*.scss']
         },
         js: {
             "{env}/js/main.min.js": ['js/**/*.js'],

@@ -1,3 +1,16 @@
+/**
+* Some basic vars
+*/
+
+$font-base: "Helvetica", Arial;
+$base-font-size: 16px;
+$base-line-height: 1;
+$base-color: #222;
+
+/**
+ * End of vars
+ */
+
 *,
 *:before,
 *:after {
@@ -5,7 +18,7 @@
 }
 
 html {
-    font-size: $default-font-size;
+    font-size: 16px;
 }
 
 /**
@@ -28,7 +41,7 @@ textarea {
 
 
 body {
-    font-family: $font-verdana;
+    font-family: $font-base;
     font-size: $base-font-size;
     line-height: $base-line-height;
     color: $base-color;
