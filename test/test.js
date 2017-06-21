@@ -54,44 +54,56 @@ var testConfig = {
 };
 
 
+// A callback needs to be implemented, so that runGulp() is completely done before runTest() starts
 
-require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
-gulp.start('js');
+function runGulp() {
+    require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
+    gulp.start('js');
 
-require(__dirname + '/../tasks/css/task.js')(gulp, testConfig.css, testConfig.paths.css);
-gulp.start('css');
+    require(__dirname + '/../tasks/css/task.js')(gulp, testConfig.css, testConfig.paths.css);
+    gulp.start('css');
 
-var jsInput = fs.readFileSync('./test/input/compiled/js/test.js', 'utf8');
-var jsOutput = fs.readFileSync('./test/output/js/test.js', 'utf8');
+    var jsInput = fs.readFileSync('./test/input/compiled/js/test.js', 'utf8');
+    var jsOutput = fs.readFileSync('./test/output/js/test.js', 'utf8');
 
-var cssInput = fs.readFileSync('./test/input/compiled/css/main.css', 'utf8');
-var cssOutput = fs.readFileSync('./test/output/css/main.css', 'utf8');
+    var cssInput = fs.readFileSync('./test/input/compiled/css/main.css', 'utf8');
+    var cssOutput = fs.readFileSync('./test/output/css/main.css', 'utf8');
 
-var compareFiles = function(id) {
+    var compareFiles = function(id) {
 
-    if (id == "js" && jsInput === jsOutput) {
-        return true;
-    }
+        if (id == "js" && jsInput === jsOutput) {
+            return true;
+        }
 
-    if (id == "css" && cssInput === cssOutput) {
-        return true;
-    }
+        if (id == "css" && cssInput === cssOutput) {
+            return true;
+        }
 
-    return false;
-};
+        return false;
+    };
+}
 
+ function runTest() {
 
-describe('Gulp tasks testing', function() {
+     describe('Gulp tasks testing', function () {
 
-        describe('CSS compiling and compression ... ', function() {
-            it("Test was done", function() {
-                assert.equal(true, compareFiles("css"));
-            })
-        });
-        describe('Testing JS compression ... ', function() {
+         describe('CSS compiling and compression ... ', function () {
+             it("Test was done", function () {
+                 assert.equal(true, compareFiles("css"));
+             })
+         });
+         describe('Testing JS compression ... ', function () {
 
-            it("Test was done", function() {
-                assert.equal(true, compareFiles("js"));
-            })
-        });
-    });
+             it("Test was done", function () {
+                 assert.equal(true, compareFiles("js"));
+             })
+         });
+     });
+     
+ }
+
+runGulp();
+
+// Or create implement script which waits until the compiled files are available in output
+
+runTest();
