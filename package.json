@@ -18,6 +18,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^3.2.0",
     "gulp-postcss": "^7.0.0",
+    "gulp-rollup": "^2.12.0",
     "gulp-sass": "^3.1.0",
     "gulp-svgmin": "^1.2.3",
     "mkdirp": "^0.5.1",
@@ -25,6 +26,7 @@
     "yargs": "^8.0.1"
   },
   "devDependencies": {
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "rollup-plugin-includepaths": "^0.2.2"
   }
 }
