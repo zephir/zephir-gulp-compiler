@@ -1,6 +1,7 @@
 var babel = require('gulp-babel'),
     concat = require('gulp-concat'),
-    changed = require('gulp-changed');
+    changed = require('gulp-changed'),
+    gutil = require('gulp-util');
 
 module.exports = function(gulp, config, paths) {
 
@@ -27,7 +28,7 @@ module.exports = function(gulp, config, paths) {
                 buffer = buffer.pipe(concat(file));
             }
 
-            buffer.pipe( gulp.dest(dest) );
+            buffer.pipe( gulp.dest(dest)).on('error', gutil.log);;
 
         }
 

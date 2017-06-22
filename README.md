@@ -159,10 +159,13 @@ You can define your own environments or not use them at all. Be aware that you h
 
 ## Run / Commands
 
+'gulp css'
+
 
 ### Testing
 
-[Mocha](https://mochajs.org/) is included to simply run and build unit tests for js files.
+Please feel free to improve or create custom your gulp tasks.
+[Mocha](https://mochajs.org/) is included to simply run and build unit tests for gulp tasks.
 
 Simply type `npm test` in terminal from your project root (where the gulpfile.js is located).
 

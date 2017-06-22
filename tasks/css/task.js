@@ -1,6 +1,7 @@
 var sass = require('gulp-sass'),
     mkdirp = require('mkdirp'),
-    changed = require('gulp-changed');
+    changed = require('gulp-changed'),
+    gutil = require('gulp-util');
 
 module.exports = function(gulp, config, paths) {
 
@@ -26,7 +27,7 @@ module.exports = function(gulp, config, paths) {
                 buffer = require('./cleanCss.js')(buffer, config.cleanCss.config);
             }
 
-            buffer.pipe( gulp.dest(dest) );
+            buffer.pipe( gulp.dest(dest)).on('error', gutil.log);
 
         }
 
