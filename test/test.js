@@ -32,7 +32,7 @@ function runTest() {
              fileImage = './test/output/images/test.jpg',
              jsInput = fs.readFileSync('./test/input_comp/js/test.js', 'utf8'),
              cssInput = fs.readFileSync('./test/input_comp/css/main.css', 'utf8'),
-             imageInput = './test/output/images/test.jpg',
+             imageInput = './test/input/images/test.jpg',
              compareFiles = function(task) {
 
                  if (task == "js" && jsInput === fs.readFileSync(fileJS, 'utf8')) {
