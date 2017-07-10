@@ -1,5 +1,3 @@
-
-
 require('./globalVars.js');
 require('./testConfig.js');
 
@@ -29,25 +27,20 @@ function runGulp() {
 
                 resolve();
 
-                }).then(function(wait) {
-
-
                 }).then(function () {
 
                 require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
                 gulp.start('js');
 
-                }).then(function (wait) {
+                }).then(function () {
 
                 require(__dirname + '/../tasks/images/task.js')(gulp, testConfig.images, testConfig.paths.images);
                 gulp.start('images');
 
                 });
-
             });
         });
     });
-
 }
 
 function runTest() {
@@ -106,12 +99,10 @@ function runTest() {
 }
 
 function Test(run) {
-
     runGulp();
-    setTimeout(run, 1000);
 
+    setTimeout(run, 1000);
     runTest();
-    
 }
 
 Test();
