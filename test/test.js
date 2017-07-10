@@ -76,4 +76,16 @@ runGulp();
 
 runTest();
 
+/* it('Prepare Tests', function() {
 
+    return new Promise(function(done) {
+
+        runGulp();
+        done();
+
+    }).then(function() {
+        runTest();
+    });
+
+});
+*/
