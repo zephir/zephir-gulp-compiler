@@ -162,11 +162,13 @@ You can define your own environments or not use them at all. Be aware that you h
 'gulp css'
 
 
-### Testing
+### Workflow Testing 
+
+`npm test`
 
 Please feel free to improve or create custom your gulp tasks.
 [Mocha](https://mochajs.org/) is included to simply run and build unit tests for gulp tasks.
 
-Simply type `npm test` in terminal from your project root (where the gulpfile.js is located).
+Simply type `npm test` in terminal from the zephir-gulp-workflow project root (where the gulpfile.js is located).
 
 The files for unit tests are located in directory `test`, all unit tests are wiritten in `test/test.js`.
