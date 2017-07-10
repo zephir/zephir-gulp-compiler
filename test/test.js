@@ -97,7 +97,7 @@ function runTest() {
 
              it("done", function (img) {
                  assert.equal(true, compareFiles("images"));
-                 setTimeout(img, 1000);
+                 setTimeout(img, 800);
              })
          });
 
@@ -105,7 +105,7 @@ function runTest() {
 
              it("done", function (img) {
                  assert.equal(true, compareFiles("svg"));
-                 setTimeout(img, 1000);
+                 setTimeout(img, 800);
              })
          });
      });
