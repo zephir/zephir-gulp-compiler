@@ -12,7 +12,7 @@ function runGulp() {
     require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
     gulp.start('js');
 
-    // console.log(gulp.tasks.js.done);
+    //console.log(gulp.tasks.js.done);
 
     require(__dirname + '/../tasks/css/task.js')(gulp, testConfig.css, testConfig.paths.css);
     gulp.start('css');
@@ -21,6 +21,33 @@ function runGulp() {
     require(__dirname + '/../tasks/images/task.js')(gulp, testConfig.images, testConfig.paths.images);
     gulp.start('images');
 
+}
+
+function cleanUp() {
+
+/* Dont work needs work
+    var deleteFolderRecursive = function(path) {
+      if( fs.existsSync(path) ) {
+        fs.readdirSync(path).forEach(function(file,index){
+          var curPath = path + "/output/css" + file;
+          if(fs.lstatSync(curPath).isDirectory()) { // recurse
+            deleteFolderRecursive(curPath);
+          } else { // delete file
+            fs.unlinkSync(curPath);
+          }
+        });
+        fs.rmdirSync(path);
+      }
+    };
+
+/* Dont work
+    gulp.task('clean:test', function () {
+        return del([
+             '/output/css/'
+    ]);
+});
+
+    gulp.task('default', ['clean:test']); */
 }
 
 function runTest() {
@@ -52,40 +79,49 @@ function runTest() {
 
 
          describe('SCSS to CSS compiling ... ', function () {
-             it("done", function () {
+
+             it("done", function (scss) {
                  assert.equal(true, compareFiles("css"));
+                  setTimeout(scss, 500);
+
              })
          });
+
          describe('Javascript compiling ... ', function () {
 
-             it("done", function () {
+             it("done", function (js) {
                  assert.equal(true, compareFiles("js"));
+                 setTimeout(js, 500);
              })
          });
+
          describe('Image compression ... ', function () {
 
-             it("done", function () {
+             it("done", function (img) {
                  assert.equal(true, compareFiles("images"));
+                 setTimeout(img, 500);
              })
          });
      });
 
 }
 
-runGulp();
 
-runTest();
 
-/* it('Prepare Tests', function() {
 
-    return new Promise(function(done) {
+ it('Prepare Tests', function() {
 
-        runGulp();
-        done();
+     cleanUp();
+
+    return new Promise(function(resolve) {
+
+        runGulp()
+        resolve();
 
     }).then(function() {
+
         runTest();
+
     });
 
 });
-*/
