@@ -80,7 +80,7 @@ function runTest() {
 
              it("done", function (scss) {
                  assert.equal(true, compareFiles("css"));
-                  setTimeout(scss, 500);
+                 setTimeout(scss, 500);
 
              })
          });
@@ -111,13 +111,5 @@ function runTest() {
      });
 }
 
-function Test(run) {
-    runGulp();
-
-    setTimeout(run, 1000);
-    runTest();
-}
-
-Test();
-
-
+runGulp();
+runTest();
