@@ -58,10 +58,7 @@ module.exports = testConfig = {
             "./test/output/":['./test/input/**/*.scss']
         },
         images: {
-            "./test/output/images/": ['./test/input/images/**/*.jpg']
-        },
-        svg: {
-            "public_html/svgs/": ['svgs/scene02_earn_overview.svg', 'svgs/scene03_pay_overview.svg']
+            "./test/output/images/": ['./test/input/images/**/*']
         }
     }
 

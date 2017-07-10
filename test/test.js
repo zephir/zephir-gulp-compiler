@@ -50,9 +50,11 @@ function runTest() {
          var fileJS = './test/output/js/test.js',
              fileCSS = './test/output/css/main.css',
              fileImage = './test/output/images/test.jpg',
+             fileSvg = './test/output/images/test.svg',
              jsInput = fs.readFileSync('./test/input_comp/js/test.js', 'utf8'),
              cssInput = fs.readFileSync('./test/input_comp/css/main.css', 'utf8'),
              imageInput = './test/input/images/test.jpg',
+             svgInput = './test/input/images/test.svg',
              compareFiles = function(task) {
 
                  if (task == "js" && jsInput === fs.readFileSync(fileJS, 'utf8')) {
@@ -67,9 +69,12 @@ function runTest() {
                      return true;
                  }
 
+                 if (task == "svg" && fs.statSync(svgInput).size > fs.statSync(fileSvg).size) {
+                     return true;
+                 }
+
                  return false;
              };
-
 
          describe('SCSS to CSS compiling ... ', function () {
 
@@ -88,11 +93,19 @@ function runTest() {
              })
          });
 
-         describe('Image compression ... ', function () {
+         describe('Image (JPG) compression ... ', function () {
 
              it("done", function (img) {
                  assert.equal(true, compareFiles("images"));
-                 setTimeout(img, 500);
+                 setTimeout(img, 1000);
+             })
+         });
+
+         describe('Image (SVG) compression ... ', function () {
+
+             it("done", function (img) {
+                 assert.equal(true, compareFiles("svg"));
+                 setTimeout(img, 1000);
              })
          });
      });
