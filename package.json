@@ -1,55 +1,24 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "1.0.3",
-  "description": "The default gulp workflow used by Zephir. Meant to be highly configurable and especially prepared for the LUYA CMS.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zephir/zephir-gulp-workflow.git"
-  },
-  "keywords": [
-    "gulp",
-    "workflow",
-    "scss",
-    "js",
-    "images",
-    "luya"
-  ],
-  "author": {
-    "name": "Marc Stampfli",
-    "email": "marc.stampfli@zephir.ch",
-    "url": "http://zephir.ch"
-  },
+  "version": "2.0.0",
+  "description": "",
+  "main": "workflow.js",
+  "author": "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zephir/zephir-gulp-workflow/issues"
-  },
-  "homepage": "https://github.com/zephir/zephir-gulp-workflow#readme",
   "dependencies": {
-    "autoprefixer": "^6.7.0",
-    "browser-sync": "^2.18.6",
-    "chalk": "^1.1.3",
-    "cssnano": "^3.10.0",
-    "del": "^2.2.0",
-    "extend": "^3.0.0",
+    "app-root-dir": "^1.0.2",
+    "autoprefixer": "^7.0.1",
+    "del": "^2.2.2",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "^3.1.0",
+    "gulp-clean-css": "^3.2.0",
     "gulp-concat": "^2.6.1",
-    "gulp-if": "^2.0.2",
-    "gulp-postcss": "^6.3.0",
-    "gulp-sass": "^2.2.0",
-    "gulp-sourcemaps": "^1.11.0",
-    "gulp-uglify": "^2.0.0",
-    "postcss-pxtorem": "^3.3.1",
-    "require-dir": "^0.3.1",
-    "yargs": "^5.0.0"
-  },
-  "gitHead": "de14e186ecebd9fdbe29b05423aaaede6e21def3",
-  "readme": "# zephir-gulp-workflow\nThe gulp workflow used by Zephir for all Projects.\n",
-  "readmeFilename": "README.md",
-  "_id": "zephir-gulp-workflow@0.0.1",
-  "_shasum": "236e4983aa103c27ec5e2791836e94be60257765",
-  "_from": "zephir/zephir-gulp-workflow",
-  "_resolved": "git://github.com/zephir/zephir-gulp-workflow.git#b4b20c1eed05986df41ebf00bf5eafa0a872b77b"
+    "gulp-imagemin": "^3.2.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-svgmin": "^1.2.3",
+    "mkdirp": "^0.5.1",
+    "postcss-pxtorem": "^4.0.1",
+    "yargs": "^8.0.1"
+  }
 }
