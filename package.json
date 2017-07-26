@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "",
   "main": "workflow.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "author": "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
   "license": "ISC",
   "dependencies": {
@@ -20,5 +23,12 @@
     "mkdirp": "^0.5.1",
     "postcss-pxtorem": "^4.0.1",
     "yargs": "^8.0.1"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "image-size": "^0.5.5",
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
   }
 }

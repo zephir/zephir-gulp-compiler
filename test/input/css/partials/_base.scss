@@ -1,0 +1,69 @@
+/**
+* Some basic vars
+*/
+
+$font-base: "Helvetica", Arial;
+$base-font-size: 16px;
+$base-line-height: 1;
+$base-color: #222;
+
+/**
+ * End of vars
+ */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+/**
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers:
+ */
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+/**
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+    resize: vertical;
+}
+
+
+body {
+    font-family: $font-base;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $base-color;
+    background-color: #fff;
+}
+
+button,
+input,
+select,
+textarea {
+    color: $base-color;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    background: #ccc;
+}
+
+a {
+    color: blue;
+    &:hover {
+        color: lighten(blue, 30%);
+    }
+}

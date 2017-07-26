@@ -1,6 +1,4 @@
-module.exports = {
-
-    version: "0.0.2",
+module.exports = testConfig = {
 
     css: {
         scss: {
@@ -52,45 +50,16 @@ module.exports = {
         }
     },
 
-    svg: {
-        svgmin: {
-            enabled: true,
-            config: {
-            }
-        }
-    },
-
     paths: {
-            // "DESTINATION" : ['SOURCE']
-        css: {
-            "{env}/css/main1and2/": ['scss/main1.scss', 'scss/main2.scss'],
-            "{env}/css/mainAll/": ['scss/main*.scss'],
-            "{env}/css/all/": ['scss/**/*.scss']
-            // "{env}/css/mainAll/": ['sass/main*.scss'] // Please make sure, that your compiled files pointing to an unique destination.
-            // "{env}/css/all/": ['sass/**/*.scss']
-        },
         js: {
-            "{env}/js/main.min.js": ['js/**/*.js'],
-            "{env}/jsDir/": ['js/**/*.js']
+            "./test/output/js/test.js":['./test/input/js/**/*.js']
+        },
+        css: {
+            "./test/output/":['./test/input/**/*.scss']
         },
         images: {
-            "public_html/images/": 'public_html/images/*'
-        },
-        svg: {
-            "public_html/svgs/": ['svgs/scene02_earn_overview.svg', 'svgs/scene03_pay_overview.svg']
+            "./test/output/images/": ['./test/input/images/**/*']
         }
-    },
-
-    // All tasks above are available (css, js, images and svg)
-    combinedTasks: {
-        default: [ 'css', 'js' ],
-        compile: [ 'css', 'js' ],
-        compress: [ 'images', 'svg' ]
-    },
-
-    watchTask: {
-        'css': [ 'css' ],
-        'js': [ 'js' ]
     }
 
 };

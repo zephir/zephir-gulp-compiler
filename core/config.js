@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var compileCnfigExists = function() {
+var compileConfigExists = function() {
     return fs.existsSync(global.appRootDir + '/compileConfig.js');
 };
 
@@ -21,12 +21,12 @@ var configVersionsDifferent = function() {
 var config = function() {
     var defaultConfig = require(global.moduleRootDir + '/defaultConfig.js');
 
-    if(!compileCnfigExists()) {
+    if(!compileConfigExists()) {
         writeDefaultConfig();
     }
 
     if(configVersionsDifferent()) {
-        console.info("The defaultConfig was updated! Be sure to update you compileConfig accordingly. New version: " + defaultConfig.version);
+        console.info("The defaultConfig was updated! Make sure to update you compileConfig accordingly. New version: " + defaultConfig.version);
     }
 
     return require(global.appRootDir + '/compileConfig.js');

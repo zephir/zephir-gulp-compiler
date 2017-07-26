@@ -1,6 +1,7 @@
 var sass = require('gulp-sass'),
     mkdirp = require('mkdirp'),
-    changed = require('gulp-changed');
+    changed = require('gulp-changed'),
+    gutil = require('gulp-util');
 
 module.exports = function(gulp, config, paths) {
 
@@ -12,7 +13,7 @@ module.exports = function(gulp, config, paths) {
 
             var buffer = gulp.src(source);
 
-            buffer = buffer.pipe(sass().on('error', sass.logError));
+            buffer = buffer.pipe(sass(config.scss.config).on('error', sass.logError));
 
             if(isEnabled(config.autoprefixer.enabled)) {
                 buffer = require('./autoprefixer.js')(buffer, config.autoprefixer.config);
@@ -26,7 +27,7 @@ module.exports = function(gulp, config, paths) {
                 buffer = require('./cleanCss.js')(buffer, config.cleanCss.config);
             }
 
-            buffer.pipe( gulp.dest(dest) );
+            buffer.pipe( gulp.dest(dest)).on('error', gutil.log);
 
         }
 
