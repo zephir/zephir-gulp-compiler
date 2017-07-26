@@ -1,20 +1,16 @@
-# CHANGELOG
+# Changelog
 
-## 2.x.x
+All notable changes to this project will be documented in this file.  
+This project adheres to [Semantic Versioning](http://semver.org/).
 
-### 2.0.0
+### 2.0.1 (in progress)
+
+### 2.0.0 (Release 26.07.2017)
 
 * Completly new version with a new config and a new structure
+* Added unit tests for tasks
 
-**To-Do**
-
-* Finish documentation
-* Testing
-* Add unit tests (2.0.1)
-
-## 1.x.x
-
-### 1.0.4 (in progress)
+## 1.0
 
 ### 1.0.3
 
