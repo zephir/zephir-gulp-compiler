@@ -16,15 +16,13 @@ This helps to keep every project setup as easy and neat as possible.
 
 1. Create a package.json in you project **>>** `npm init`
 2. Install GULP local **>>** `npm i --save gulp`
-3. Install the Zephir Workflow **>>** `npm i --save git+https://git@github.com/zephir/zephir-gulp-workflow#v2`
+3. Install the Zephir Workflow **>>** `npm i --save zephir-gulp-workflow`
 4. Create a new file gulpfile.js and add the content you find below
 
 ```js
 var zephirWorkflow = require('zephir-gulp-workflow');
 zephirWorkflow( require('gulp') );
 ```
-
-> On release the correct command to install the workflow will be `npm i --save zephir-gulp-workflow`
 
 ## Configuration
 
