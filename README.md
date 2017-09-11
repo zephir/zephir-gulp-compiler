@@ -157,7 +157,13 @@ You can define your own environments or not use them at all. Be aware that you h
 
 ## Run / Commands
 
-'gulp css'
+`gulp`             : Compile files into `local` folder
+
+`gulp --env prod`  : Compile into `prod` folder
+
+`gulp css`         : Compile css only
+
+`gulp watch`       : Watch for changes in related files and compile after change
 
 
 ### Workflow Testing 
