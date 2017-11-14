@@ -24,7 +24,7 @@ var zephirWorkflow = require('zephir-gulp-workflow');
 zephirWorkflow( require('gulp') );
 ```
 
-If there is already a `packages.json` file (like from git) and you like to install the dependencies: remove the node_modules folder and run `npm install gulp-util --save-dev`.
+If there is already a `packages.json` file (like from git) and you like to install the dependencies: remove the node_modules folder run `npm install --save` and `npm install gulp-util --save-dev`.
 
 ## Configuration
 
