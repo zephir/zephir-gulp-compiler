@@ -1,115 +1,90 @@
-require('./globalVars.js');
-require('./testConfig.js');
+const fs = require("fs");
+const testPair = require("../lib/testPair.js");
 
-var assert = require('assert'),
-    fs = require('fs');
+/**
+ * test run for images: dest image files exist and are smaller than src
+ */
+const images = testPair("images");
+for (dest in images) {
+    const image = images[dest];
 
-function cleanUp() {
-    del.sync([
-        __dirname + '/output/**/*',
-    ]);
-}
+    test(`${dest} test files exist`, () => {
+        expect(image.result).toBeDefined();
+    });
 
-function runGulp() {
-    describe('Prepare testing: \n',  function () {
-
-        it('Delete previously compiled files ...', function(wait) {
-
-            cleanUp();
-
-            setTimeout(wait, 1000);
-
-            describe('Running gulp tasks: \n',  function () {
-            return new Promise(function(resolve) {
-
-                require(__dirname + '/../tasks/css/task.js')(gulp, testConfig.css, testConfig.paths.css);
-                gulp.start('css');
-
-                resolve();
-
-                }).then(function () {
-
-                require(__dirname + '/../tasks/js/task.js')(gulp, testConfig.js, testConfig.paths.js);
-                gulp.start('js');
-
-                }).then(function () {
-
-                require(__dirname + '/../tasks/images/task.js')(gulp, testConfig.images, testConfig.paths.images);
-                gulp.start('images');
-
-                });
-            });
-        });
+    test(`${image.result} smaller than ${image.compareTo}`, () => {
+        expect(fs.statSync(image.result).size).toBeLessThanOrEqual(
+            fs.statSync(image.compareTo).size
+        );
     });
 }
 
-function runTest() {
+/**
+ * test run for svgs: dest files exist and are smaller than src
+ */
+const svgs = testPair("svg");
+for (dest in svgs) {
+    const svg = svgs[dest];
 
-     describe('Testing gulp tasks: \n',  function () {
+    test(`${dest} test files exist`, () => {
+        expect(svg.result).toBeDefined();
+    });
 
-         var fileJS = './test/output/js/test.js',
-             fileCSS = './test/output/css/main.css',
-             fileImage = './test/output/images/test.jpg',
-             fileSvg = './test/output/images/test.svg',
-             jsInput = fs.readFileSync('./test/input_comp/js/test.js', 'utf8'),
-             cssInput = fs.readFileSync('./test/input_comp/css/main.css', 'utf8'),
-             imageInput = './test/input/images/test.jpg',
-             svgInput = './test/input/images/test.svg',
-             compareFiles = function(task) {
-
-                 if (task == "js" && jsInput === fs.readFileSync(fileJS, 'utf8')) {
-                     return true;
-                 }
-
-                 if (task == "css" && cssInput === fs.readFileSync(fileCSS, 'utf8')) {
-                     return true;
-                 }
-
-                 if (task == "images" && fs.statSync(imageInput).size > fs.statSync(fileImage).size) {
-                     return true;
-                 }
-
-                 if (task == "svg" && fs.statSync(svgInput).size > fs.statSync(fileSvg).size) {
-                     return true;
-                 }
-
-                 return false;
-             };
-
-         describe('SCSS to CSS compiling ... ', function () {
-
-             it("done", function (scss) {
-                 assert.equal(true, compareFiles("css"));
-                 setTimeout(scss, 500);
-
-             })
-         });
-
-         describe('Javascript compiling ... ', function () {
-
-             it("done", function (js) {
-                 assert.equal(true, compareFiles("js"));
-                 setTimeout(js, 500);
-             })
-         });
-
-         describe('Image (JPG) compression ... ', function () {
-
-             it("done", function (img) {
-                 assert.equal(true, compareFiles("images"));
-                 setTimeout(img, 800);
-             })
-         });
-
-         describe('Image (SVG) compression ... ', function () {
-
-             it("done", function (img) {
-                 assert.equal(true, compareFiles("svg"));
-                 setTimeout(img, 800);
-             })
-         });
-     });
+    test(`${svg.result} smaller than ${svg.compareTo}`, () => {
+        expect(fs.statSync(svg.result).size).toBeLessThanOrEqual(
+            fs.statSync(svg.compareTo).size
+        );
+    });
 }
 
-runGulp();
-runTest();
+/**
+ * test run for copy: files exist
+ */
+const copy = testPair("copy");
+for (dest in copy) {
+    if (dest.indexOf("deleteme" >= 0)) {
+        continue;
+    }
+    const file = copy[dest];
+    test(`${dest} test files exist`, () => {
+        expect(file.result).toBeDefined();
+        expect(fs.existsSync(file.result));
+    });
+}
+
+/**
+ * test run for js: files exist, and content is as expected
+ */
+const js = testPair("js");
+delete js['./input/tmp/*.js'];
+for (dest in js) {
+    const file = js[dest];
+
+    test(`js file exists: ${file.result}`, () => {
+        expect(fs.existsSync(file.result)).toBe(true);
+    });
+
+    test(`js file content is as expected: ${file.result}`, () => {
+        const r = fs.readFileSync(file.result, "utf8");
+        const c = fs.readFileSync(file.compareTo, "utf8");
+        expect(r).toBe(c);
+    });
+}
+
+/**
+ * test run for css: files exist, and content is as expected
+ */
+const css = testPair("css");
+for (dest in css) {
+    const file = css[dest];
+
+    test(`css file exists: ${file.result}`, () => {
+        expect(fs.existsSync(file.result)).toBe(true);
+    });
+
+    test(`css file content is as expected: ${file.result}`, () => {
+        const r = fs.readFileSync(file.result, "utf8");
+        const c = fs.readFileSync(file.compareTo, "utf8");
+        expect(r).toBe(c);
+    });
+}

@@ -1,35 +1,54 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "2.0.1",
-  "description": "",
+  "version": "3.0.0",
+  "repository": "https://github.com/zephir/zephir-gulp-workflow",
+  "description": "The workflow https://zephir.ch uses.",
   "main": "workflow.js",
   "scripts": {
-    "test": "mocha"
+    "dev": "cd ./test; gulp",
+    "dist": "cd ./test; gulp dist --env dist",
+    "jest": "jest",
+    "test": "npm run clean; npm run dist; jest",
+    "clean": "rm -rf ./test/output",
+    "testd": "http-server ./test -o"
   },
-  "author": "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
+  "contributors": [
+    "Marc Stampfli <marc.stampfli@zephir.ch> (http://zephir.ch)",
+    "Moritz Jacobs <mail@moritzjacobs.de> (https://moritzjacobs.de)"
+  ],
   "license": "ISC",
   "dependencies": {
     "app-root-dir": "^1.0.2",
-    "autoprefixer": "^7.0.1",
-    "del": "^2.2.2",
-    "gulp-babel": "^6.1.2",
-    "gulp-changed": "^3.1.0",
-    "gulp-clean-css": "^3.2.0",
+    "autoprefixer": "^8.3.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "del": "^3.0.0",
+    "glob": "^7.1.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^3.2.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-svgmin": "^1.2.3",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^3.2.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.0",
+    "http-server": "^0.11.1",
+    "imagemin-pngquant": "^5.1.0",
+    "junk": "^2.1.0",
+    "merge-stream": "^1.0.1",
     "mkdirp": "^0.5.1",
     "postcss-pxtorem": "^4.0.1",
-    "yargs": "^8.0.1"
+    "run-sequence": "^2.2.1",
+    "yargs": "^11.1.0"
   },
   "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-util": "^3.0.8",
-    "image-size": "^0.5.5",
-    "mocha": "^3.4.2",
-    "should": "^11.2.1"
+    "jest": "^22.4.3"
   }
 }

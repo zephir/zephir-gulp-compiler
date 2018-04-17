@@ -1,66 +1,74 @@
-var fs = require('fs'),
-    del = require('del');
+const fs = require("fs");
+const del = require("del");
+const junk = require("junk");
+const watch = require("gulp-watch");
+const runSequence = require("run-sequence");
+const gutil = require("gulp-util");
 
-imagemin = require('gulp-imagemin');
-
-
+// define globals
 global = {};
+isEnabled = require("./lib/isEnabled.js");
+replaceEnv = require("./lib/replaceEnv.js");
 
-isEnabled = require('./helpers/isEnabled.js');
-replaceEnv = require('./helpers/replaceEnv.js');
-
-argv = require('yargs')
-    .alias('e', 'env')
-    .default('env', 'local')
-    .argv;
+// process cli args
+argv = require("yargs")
+    .alias("e", "env")
+    .default("env", "local").argv;
 
 global.env = argv.env;
 
-console.log("Environment: " + global.env);
+console.log(`Environment: ${global.env}`);
 
-var workflow = function(gulp) {
-    if(!gulp)
-        return false;
+const workflow = gulp => {
+    if (!gulp) return false;
 
+    // define more globals
     global.moduleRootDir = __dirname;
-    global.appRootDir = require('app-root-dir').get();
+    global.appRootDir = require("app-root-dir").get();
+    global.runFrom = global.appRootDir;
 
-    var config = require('./core/config.js')();
+    const config = require("./lib/config.js")();
 
     // Init all tasks
-    var tasks = fs.readdirSync( global.moduleRootDir + '/tasks/');
+    const tasks = fs
+        .readdirSync(`${global.moduleRootDir}/tasks/`)
+        .filter(junk.not);
 
-    tasks.forEach( function( task ) {
-
-        require('./tasks/' + task + '/task.js')(gulp, config[task], config.paths[task]);
-
-    } );
-
-    gulp.task('clean', function() {
-        del([global.env]);
+    // autorequire
+    tasks.forEach(task => {
+        require(`./tasks/${task}/task.js`)(
+            gulp,
+            config[task],
+            config.paths[task]
+        );
     });
 
-    for( var taskName in config.combinedTasks) {
-        gulp.task(taskName, config.combinedTasks[taskName]);
+    // create combined tasks as sequential runs of autoincluded tasks
+    for (const taskName in config.combinedTasks) {
+        gulp.task(taskName, (cb) => {
+            runSequence.apply(this, config.combinedTasks[taskName], cb);
+        });
     }
 
-    gulp.task('watch', function() {
+    // special watch task
+    gulp.task("watch", () => {
+        // watch for every path group
+        for (const pathGroup in config.watchTask) {
+            const sources = config.paths[pathGroup];
+            const tasks = config.watchTask[pathGroup];
 
-        for( var pathGroup in config.watchTask) {
-            var sources = config.paths[pathGroup];
-            var tasks = config.watchTask[pathGroup];
+            if (typeof sources !== "string") {
+                for (const dest in sources) {
+                    const source = sources[dest];
 
-            if(typeof sources !== 'string') {
-                for ( var dest in sources ) {
-                    var source = sources[dest];
-                    gulp.watch(source, tasks);
+                    watch(source).on("change", event => {
+                        gutil.log(source + " changed");
+                        runSequence(tasks);
+                    });
                 }
-            } else {
-                gulp.watch(sources, tasks);
             }
         }
     });
-
 };
 
 module.exports = workflow;

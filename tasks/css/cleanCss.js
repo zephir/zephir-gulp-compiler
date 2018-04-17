@@ -1,9 +1,3 @@
-var cleanCSS = require('gulp-clean-css');
+const cleanCSS = require("gulp-clean-css");
 
-module.exports = function(buffer, config) {
-
-    return buffer.pipe(
-        cleanCSS(config)
-    );
-
-};
+module.exports = (buffer, config) => buffer.pipe(cleanCSS(config));

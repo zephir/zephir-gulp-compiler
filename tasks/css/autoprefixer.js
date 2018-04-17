@@ -1,12 +1,9 @@
-var postcss = require('gulp-postcss'),
-    autoprefixer = require('autoprefixer');
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
 
-module.exports = function(buffer, config) {
-
-    return buffer.pipe(
-        postcss([ autoprefixer(config) ]).on('error', function(error) {
-            console.error(error.toString())
+module.exports = (buffer, config) =>
+    buffer.pipe(
+        postcss([autoprefixer(config)]).on("error", error => {
+            console.error(error.toString());
         })
     );
-
-};

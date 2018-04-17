@@ -1,5 +1,13 @@
 // Simple Sass structure for testing
-
-@import "partials/base";
-@import "partials/grid";
 @import "partials/reset";
+
+$c: red;
+$w: 20px;
+
+.foo {
+    background-color: $c;
+
+    .bar {
+        padding: $w;
+    }
+}

@@ -1,37 +1,62 @@
-var sass = require('gulp-sass'),
-    mkdirp = require('mkdirp'),
-    changed = require('gulp-changed'),
-    gutil = require('gulp-util');
+const sass = require("gulp-sass");
+const mkdirp = require("mkdirp");
+const sourcemaps = require("gulp-sourcemaps");
+const changed = require("gulp-changed");
+const gnotify = require("gulp-notify");
+const gutil = require("gulp-util");
+const merge = require("merge-stream");
 
-module.exports = function(gulp, config, paths) {
+module.exports = (gulp, config, paths) => {
+    gulp.task("css", () => {
+        let stream;
 
-    gulp.task('css', function() {
-
-        for (var dest in paths) {
-            var source = paths[dest];
+        for (let dest in paths) {
+            const source = paths[dest];
             dest = replaceEnv(dest);
 
-            var buffer = gulp.src(source);
+            let buffer = gulp.src(source);
 
-            buffer = buffer.pipe(sass(config.scss.config).on('error', sass.logError));
-
-            if(isEnabled(config.autoprefixer.enabled)) {
-                buffer = require('./autoprefixer.js')(buffer, config.autoprefixer.config);
+            if (isEnabled(config.sourcemaps.enabled)) {
+                buffer = buffer.pipe(sourcemaps.init());
             }
 
-            if(isEnabled(config.pxToRem.enabled)) {
-                buffer = require('./pxToRem.js')(buffer, config.pxToRem.config);
+            buffer = buffer.pipe(
+                sass(config.scss.config).on(
+                    "error",
+                    gnotify.onError({
+                        message: "Error: <%= error.message %>",
+                        emitError: true
+                    })
+                )
+            );
+
+            if (isEnabled(config.autoprefixer.enabled)) {
+                buffer = require("./autoprefixer.js")(
+                    buffer,
+                    config.autoprefixer.config
+                );
             }
 
-            if(isEnabled(config.cleanCss.enabled)) {
-                buffer = require('./cleanCss.js')(buffer, config.cleanCss.config);
+            if (isEnabled(config.cleanCss.enabled)) {
+                buffer = require("./cleanCss.js")(
+                    buffer,
+                    config.cleanCss.config
+                );
             }
 
-            buffer.pipe( gulp.dest(dest)).on('error', gutil.log);
+            if (isEnabled(config.sourcemaps.enabled)) {
+                buffer = buffer.pipe(sourcemaps.write("."));
+            }
 
+            buffer = buffer.pipe(gulp.dest(dest)).on("error", gutil.log);
+
+            if (stream === undefined) {
+                stream = buffer;
+            } else {
+                stream = merge(stream, buffer);
+            }
         }
 
+        return stream;
     });
-
-
 };

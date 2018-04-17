@@ -1,32 +1,58 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.  
-This project adheres to [Semantic Versioning](http://semver.org/).
+## 3.0.0
 
-### 2.0.1 (in progress)
+- Added uglify option
+- Updated dependencies
+- Updated default paths
+- Updated tests
 
-### 2.0.0 (Release 26.07.2017)
+## 1.3.3
+- updated dependencies including major versions
 
-* Completly new version with a new config and a new structure
-* Added unit tests for tasks
+## 1.3.2
+- updated dependencies
 
-## 1.0
+## 1.3.1
+- fixed bug that made gulp process crash on first run
 
-### 1.0.3
+## 1.3.0
+- move babel-transformation for es6 files to own source/task combo
+- `cleanup` task is now `clean`
 
-* Fixed a small bug where config wasn't overwritten at all
+## 1.2.5
+- improved task defaults, `dev` and `dist` as `--env` options, defaults to `dev`.
+- updated dependencies
 
-### 1.0.2
+## 1.2.4
+- remove config version check
+- fix cleanup task for paths outside gulp directory
+- fix babel when gulp task is in subdirectory
+- add browserify (optional)
 
-* Config will now be overwritten by user config, not extended
+## 1.2.3
+- add tests for copy and cleanup tasks
+- code refactoring
+- renamed `compileConfig.js` and `defaultConfig.js`
+- remove pxToRem task
 
-### 1.0.1
+## 1.2.2
+- merge changelog into README.md
+- fix default config
 
-* Improved logging of the workflow (if config element is object, dumpobject as json)
-* Updated README
+## 1.2.1
+- Fix run-sequence and cleanup task
+- Filter junk files in task inclusion by glob and remove output dir before running gulp test
 
-### 1.0.0
+## 1.2.0
+- added cleanup task for file removal (sourcemaps)
+- added gulp-notify for errors
+- replaced native gulp.watch with gulp-watch for better error handling
 
-* Update dependencies to newest version
-* Add .html files to default watch config
-* Add changelog
+## 1.1.1
+- cleanup, refactoring and overall code quality
+
+## 1.1.0
+
+- Moved testing to jest
+- Run tests with `npm test` (run `gulp dist` first!)

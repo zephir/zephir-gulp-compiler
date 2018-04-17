@@ -1,3 +1,2 @@
-function howAreYou() {
-    return "How are you my dear?";
-}
+hi();
+console.log("am I working?");

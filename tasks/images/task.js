@@ -1,23 +1,38 @@
-var imagemin = require('gulp-imagemin');
+const imagemin = require("gulp-imagemin");
+const pngquant = require("imagemin-pngquant");
+const merge = require("merge-stream");
+const gnotify = require("gulp-notify");
 
-module.exports = function(gulp, config, paths) {
+module.exports = (gulp, config, paths) => {
+    gulp.task("images", () => {
+        let stream;
 
-    gulp.task('images', function() {
-
-        for (var dest in paths) {
-            var source = paths[dest];
+        for (let dest in paths) {
+            const source = paths[dest];
             dest = replaceEnv(dest);
 
-            var buffer = gulp.src(source);
+            let buffer = gulp.src(source);
 
-            if(isEnabled(config.imagemin.enabled)) {
+            if (isEnabled(config.imagemin.enabled)) {
                 buffer = buffer.pipe(imagemin(config.imagemin.config));
+                buffer = buffer.pipe(imagemin(pngquant()));
             }
 
-            buffer.pipe( gulp.dest(dest) );
+            buffer = buffer.pipe(gulp.dest(dest)).on(
+                "error",
+                gnotify.onError({
+                    message: "Error: <%= error.message %>",
+                    emitError: true
+                })
+            );
+
+            if (stream === undefined) {
+                stream = buffer;
+            } else {
+                stream = merge(stream, buffer);
+            }
         }
 
+        return stream;
     });
-
-
 };

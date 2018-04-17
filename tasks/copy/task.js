@@ -1,9 +1,8 @@
 const merge = require("merge-stream");
-
-const svgmin = require("gulp-svgmin");
+const gnotify = require("gulp-notify");
 
 module.exports = (gulp, config, paths) => {
-    gulp.task("svg", () => {
+    gulp.task("copy", () => {
         let stream;
         for (let dest in paths) {
             const source = paths[dest];
@@ -11,11 +10,13 @@ module.exports = (gulp, config, paths) => {
 
             let buffer = gulp.src(source);
 
-            if (isEnabled(config.svgmin.enabled)) {
-                buffer = buffer.pipe(svgmin(config.svgmin.config));
-            }
-
-            buffer = buffer.pipe(gulp.dest(dest));
+            buffer = buffer.pipe(gulp.dest(dest)).on(
+                "error",
+                gnotify.onError({
+                    message: "Error: <%= error.message %>",
+                    emitError: true
+                })
+            );
 
             if (stream === undefined) {
                 stream = buffer;
@@ -23,6 +24,7 @@ module.exports = (gulp, config, paths) => {
                 stream = merge(stream, buffer);
             }
         }
+
         return stream;
     });
 };
