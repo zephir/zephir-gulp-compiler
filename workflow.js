@@ -38,16 +38,34 @@ const workflow = gulp => {
     tasks.forEach(task => {
         require(`./tasks/${task}/task.js`)(
             gulp,
+            task,
             config[task],
             config.paths[task]
         );
     });
 
-    // create combined tasks as sequential runs of autoincluded tasks
+    // create "fake" tasks
     for (const taskName in config.combinedTasks) {
         gulp.task(taskName, (cb) => {
             runSequence.apply(this, config.combinedTasks[taskName], cb);
         });
+    }
+
+    // create combined tasks as sequential runs of autoincluded tasks
+    for (const taskName in config.extraTasks) {
+        const task = config.extraTasks[taskName];
+        if(typeof task.runAsTask !== 'undefined') {
+            const runAsTask = task.runAsTask;
+
+            require(`./tasks/${runAsTask}/task.js`)(
+                gulp,
+                taskName,
+                config.extraTasks[taskName],
+                config.paths[taskName]
+            );
+
+            console.log(taskName, runAsTask);
+        }
     }
 
     // special watch task

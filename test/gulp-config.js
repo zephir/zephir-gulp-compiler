@@ -2,7 +2,7 @@ let testConfig = require("../gulp-config-default");
 
 // Enable uglify which is disabled by default
 testConfig.js.uglify.enabled = true;
-testConfig.es6.uglify.enabled = true;
+testConfig.extraTasks.es6.uglify.enabled = true;
 
 testConfig.clean = {
     paths: ["./output/favicons/deleteme.txt"]

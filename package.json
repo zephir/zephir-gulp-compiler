@@ -1,6 +1,6 @@
 {
   "name": "zephir-gulp-workflow",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "repository": "https://github.com/zephir/zephir-gulp-workflow",
   "description": "The workflow https://zephir.ch uses.",
   "main": "workflow.js",

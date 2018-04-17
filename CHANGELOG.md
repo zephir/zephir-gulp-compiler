@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1
+
+- Added extraTasks
+
 ## 3.0.0
 
 - Added uglify option

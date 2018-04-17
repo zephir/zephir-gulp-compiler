@@ -1,8 +1,8 @@
 const merge = require("merge-stream");
 const gnotify = require("gulp-notify");
 
-module.exports = (gulp, config, paths) => {
-    gulp.task("copy", () => {
+module.exports = (gulp, taskName, config, paths) => {
+    gulp.task(taskName, () => {
         let stream;
         for (let dest in paths) {
             const source = paths[dest];

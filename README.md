@@ -27,7 +27,13 @@ Run `gulp` to create a `gulp-config.js` and configure to your liking.
 
 ## Configuration
 
-tasks in `combinedTasks` are run in sequence, so if you want parallel execution you would have to put them in another array inside `combinedTasks`, e.g.:
+### extraTasks
+
+Tasks in `extraTasks` are special tasks that need the config property `runAsTask`. The task will then run as the task defined under `runAsTask` but with different configurations and different paths.
+
+### combinedTasks
+
+Tasks in `combinedTasks` are run in sequence, so if you want parallel execution you would have to put them in another array inside `combinedTasks`, e.g.:
 
 ```js
 combinedTasks: {

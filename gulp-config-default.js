@@ -51,34 +51,6 @@ module.exports = {
         }
     },
 
-    es6: {
-        sourcemaps: {
-            enabled: "local"
-        },
-        browserify: {
-            enabled: true
-        },
-        uglify: {
-            enabled: false
-        },
-        babeljs: {
-            enabled: true,
-            config: {
-                minified: false,
-                presets: [
-                    [
-                        "env",
-                        {
-                            targets: {
-                                browsers: browserlist
-                            }
-                        }
-                    ]
-                ]
-            }
-        }
-    },
-
     clean: {
         enabled: "dist",
         paths: ["../public/**/*.map", "../src/tmp"]
@@ -101,6 +73,39 @@ module.exports = {
             enabled: true,
             config: {}
         }
+    },
+
+    extraTasks: {
+
+        es6: {
+            runAsTask: 'js',
+            sourcemaps: {
+                enabled: "local"
+            },
+            browserify: {
+                enabled: true
+            },
+            uglify: {
+                enabled: false
+            },
+            babeljs: {
+                enabled: true,
+                config: {
+                    minified: false,
+                    presets: [
+                        [
+                            "env",
+                            {
+                                targets: {
+                                    browsers: browserlist
+                                }
+                            }
+                        ]
+                    ]
+                }
+            }
+        },
+
     },
 
     paths: {

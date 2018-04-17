@@ -2,7 +2,7 @@ const merge = require("merge-stream");
 
 const svgmin = require("gulp-svgmin");
 
-module.exports = (gulp, config, paths) => {
+module.exports = (gulp, taskName, config, paths) => {
     gulp.task("svg", () => {
         let stream;
         for (let dest in paths) {

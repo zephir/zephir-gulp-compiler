@@ -6,8 +6,8 @@ const gnotify = require("gulp-notify");
 const gutil = require("gulp-util");
 const merge = require("merge-stream");
 
-module.exports = (gulp, config, paths) => {
-    gulp.task("css", () => {
+module.exports = (gulp, taskName, config, paths) => {
+    gulp.task(taskName, () => {
         let stream;
 
         for (let dest in paths) {
