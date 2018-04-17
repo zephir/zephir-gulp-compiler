@@ -1,4 +1,4 @@
-# zephir-gulp-workflow 3.0.0
+# zephir-gulp-workflow 3
 
 Updated version based on the [fork](https://github.com/moritzjacobs/mj-gulp-workflow) of [Moritz Jacobs](https://github.com/moritzjacobs).
 
