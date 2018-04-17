@@ -63,8 +63,6 @@ const workflow = gulp => {
                 config.extraTasks[taskName],
                 config.paths[taskName]
             );
-
-            console.log(taskName, runAsTask);
         }
     }
 
