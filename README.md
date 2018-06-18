@@ -15,11 +15,7 @@ Updated version based on the [fork](https://github.com/moritzjacobs/mj-gulp-work
 
 1. Create a `package.json` in your project **>>** `npm init`
 2. Install dependencies **>>** `npm i --save-dev gulp zephir-gulp-workflow`
-3. Create a new `gulpfile.js` and add the following content
-
-```js
-require('zephir-gulp-workflow')(require('gulp'));
-```
+3. Create `gulpfile.js` with the required content >> `echo -e "require('zephir-gulp-workflow')(require('gulp'));" >> gulpfile.js`
 
 ## First run
 
