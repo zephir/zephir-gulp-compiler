@@ -1,43 +1,51 @@
-let testConfig = require("../gulp-config-default");
+const browserlist = [
+    "> 0.5%",
+    "last 2 versions",
+    "IE 10"
+];
 
-// Enable uglify which is disabled by default
-testConfig.js.uglify.enabled = true;
-testConfig.extraTasks.es6.uglify.enabled = true;
+module.exports = (gulp, imagemin) => {
+    if (!gulp || !imagemin) return false;
 
-testConfig.clean = {
-    paths: ["./output/favicons/deleteme.txt"]
-};
+    return {
+        // These are the available environments which can be compiled for
+        // "local" is the default env that will always exist
+        envs: [
+            'dev', 'prep', 'prod'
+        ],
 
-testConfig.paths = {
-    // "DESTINATION" : ['SOURCE']
-    css: {
-        "./output/css/": ["./input/css/**/*.scss"]
-    },
-    es6: {
-        "./input/tmp/": ["./input/es6/*.js"]
-    },
-    es6Watch: {
-        watch: ["./input/es6/**/*.js"]
-    },
-    js: {
-        "./output/js/script.js": ["./input/tmp/*.js", "./input/js/*.js"]
-    },
-    images: {
-        "./output/images/": [
-            "./input/images/**/*.jpeg",
-            "./input/images/**/*.jpg",
-            "./input/images/**/*.png",
-            "./input/images/**/*.gif"
-        ]
-    },
-    svg: {
-        "./output/images/": ["./input/images/**/*.svg"]
-    },
-    copy: {
-        "./output/favicons/": ["./input/favicons/**/*.*"],
+        // These are the configurations for the default tasks
+        // You can either enable them generally (true) or for a special env
+        tasks: {
+
+            css: {},
+
+            js: {},
+
+            images: {},
+
+            clean: {},
+
+            redToBlue: {}
+
+        },
+
+        // You can define extra tasks here that use the regular tasks as template but
+        // change the config for a special use case
+        extraTasks: {},
+
+        // These are all paths for the tasks output => input
+        paths: {},
+
+        // Here you can combine tasks to
+        combinedTasks: {
+            default: [],
+            compile: [],
+        },
+
+        // These are the tasks that should be watched
+        watchTask: {
+
+        }
     }
 };
-
-testConfig.combinedTasks.test = ["es6", "js", "images", "svg", "css", "copy"];
-
-module.exports = testConfig;

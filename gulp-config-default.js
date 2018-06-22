@@ -1,159 +1,49 @@
-const imagemin = require("gulp-imagemin");
 const browserlist = [
     "> 0.5%",
     "last 2 versions",
     "IE 10"
 ];
 
-module.exports = {
-    css: {
-        scss: {
-            config: {
-                outputStyle: "compressed" // nested, compact, expanded and compressed are available options
-            }
+module.exports = (gulp, imagemin) => {
+    if (!gulp || !imagemin) return false;
+
+    return {
+        // These are the available environments which can be compiled for
+        // "local" is the default env that will always exist
+        envs: [
+            'dev', 'prep', 'prod'
+        ],
+
+        // These are the configurations for the default tasks
+        // You can either enable them generally (true) or for a special env
+        tasks: {
+
+            css: {},
+
+            js: {},
+
+            images: {},
+
+            clean: {},
+
         },
 
-        sourcemaps: {
-            enabled: "local"
+        // You can define extra tasks here that use the regular tasks as template but
+        // change the config for a special use case
+        extraTasks: {},
+
+        // These are all paths for the tasks output => input
+        paths: {},
+
+        // Here you can combine tasks to
+        combinedTasks: {
+            default: [],
+            compile: [],
         },
 
-        autoprefixer: {
-            enabled: true,
-            config: {
-                browsers: browserlist
-            }
-        },
+        // These are the tasks that should be watched
+        watchTask: {
 
-        cleanCss: {
-            enabled: true,
-            config: {
-                compatibility: "ie8"
-            }
         }
-    },
-
-    js: {
-        sourcemaps: {
-            enabled: "local"
-        },
-        browserify: {
-            enabled: false
-        },
-        uglify: {
-            enabled: false
-        },
-        babeljs: {
-            enabled: true,
-            config: {
-                minified: true,
-                comments: false
-            }
-        }
-    },
-
-    clean: {
-        enabled: "dist",
-        paths: ["../public/**/*.map", "../src/tmp"]
-    },
-
-    images: {
-        imagemin: {
-            enabled: true,
-            config: [
-                imagemin.gifsicle({ interlaced: true }),
-                imagemin.jpegtran({ progressive: true }),
-                imagemin.optipng({ optimizationLevel: 5 }),
-                imagemin.svgo({ plugins: [{ removeViewBox: true }] })
-            ]
-        }
-    },
-
-    svg: {
-        svgmin: {
-            enabled: true,
-            config: {}
-        }
-    },
-
-    extraTasks: {
-
-        es6: {
-            runAsTask: 'js',
-            sourcemaps: {
-                enabled: "local"
-            },
-            browserify: {
-                enabled: true
-            },
-            uglify: {
-                enabled: false
-            },
-            babeljs: {
-                enabled: true,
-                config: {
-                    minified: false,
-                    presets: [
-                        [
-                            "env",
-                            {
-                                targets: {
-                                    browsers: browserlist
-                                }
-                            }
-                        ]
-                    ]
-                }
-            }
-        },
-
-    },
-
-    paths: {
-        // "DESTINATION" : ['SOURCE']
-        css: {
-            "dist/{env}/css/": ["src/scss/**/*.scss"]
-        },
-        es6: {
-            "src/tmp/es6-bundle.js": ["src/es6/**/*.js"]
-        },
-        es6Watch: {
-            "src/tmp/es6-bundle.js": ["src/es6/**/*.js"]
-        },
-        js: {
-            "dist/{env}/js/script.js": [
-                "src/tmp/es6-bundle.js",
-                "src/js/**/*.js"
-            ]
-        },
-        images: {
-            "../public_html/images/": [
-                "src/images/**/*.jpeg",
-                "src/images/**/*.jpg",
-                "src/images/**/*.png",
-                "src/images/**/*.gif"
-            ]
-        },
-        svg: {
-            "../public_html/images/": ["src/images/**/*.svg"]
-        },
-        copy: {
-            "../public/fonts/": ["../src/fonts/**/*.*"],
-            "../public/favicons/": ["../src/favicons/**/*.*"]
-        }
-    },
-
-    // All tasks above are available (css, js, images and svg)
-    combinedTasks: {
-        default: [["dist", "watch"]],
-        dist: ["es6", "js", "images", "svg", "css", "copy", "clean"],
-    },
-
-    watchTask: {
-        images: ["images"],
-        svg: ["svg"],
-        css: ["css"],
-        es6Watch: ["es6"],
-        js: ["js"],
-        copy: ["copy"]
     }
 };
