@@ -1,2 +1,2 @@
 module.exports = (param) =>
-    param === true || (typeof param === "string" && param.indexOf(global.env) !== -1);
+    param === true || (typeof param === "string" && param.indexOf(globals.env) !== -1);

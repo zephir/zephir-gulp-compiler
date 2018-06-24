@@ -18,13 +18,43 @@ module.exports = (gulp, imagemin) => {
         // You can either enable them generally (true) or for a special env
         tasks: {
 
-            css: {},
+            css: {
+                sourcemaps: {
+                    enabled: "local"
+                },
+
+                scss: {
+                    config: {
+                        outputStyle: "compressed" // nested, compact, expanded and compressed are available options
+                    }
+                },
+
+                autoprefixer: {
+                    enabled: true,
+                    config: {
+                        browsers: browserlist
+                    }
+                },
+
+                cleanCss: {
+                    enabled: true,
+                    config: {
+                        level: 2, // https://github.com/jakubpawlowicz/clean-css#optimization-levels
+                        compatibility: "ie9"
+                    }
+                }
+            },
 
             js: {},
 
             images: {},
 
             clean: {},
+
+            redToBlue: {
+                runAsTask: 'css',
+
+            }
 
         },
 
@@ -33,7 +63,13 @@ module.exports = (gulp, imagemin) => {
         extraTasks: {},
 
         // These are all paths for the tasks output => input
-        paths: {},
+        paths: {
+            css: {
+                'dist/{env}/main.css': [
+                    'input/css/**/*.scss'
+                ]
+            }
+        },
 
         // Here you can combine tasks to
         combinedTasks: {

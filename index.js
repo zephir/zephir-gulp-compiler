@@ -6,8 +6,6 @@ argv = require("yargs")
 // Define globals
 globals = {};
 log = require('fancy-log');
-isEnabled = require('./helpers/isEnabled');
-replaceEnv = require('./helpers/replaceEnv');
 globals.env = argv.env;
 
 // Define local variables
@@ -34,26 +32,10 @@ module.exports = (gulp) => {
         throw new Error(`Env ${globals.env} is not defined, you can use ${config.envs.join(', ')}!`);
     }
 
-    // Try to require task js files by config tasks
-    for (const taskName in config.tasks) {
-        if (fs.existsSync(`${globals.moduleDir}/tasks/${taskName}.js`)) {
-            // Load task
-        } else if (fs.existsSync(`${globals.cwd}/gulp-tasks/${taskName}.js`)) {
-            // Load task
-        } else {
-            const taskTemplate = fs.readFileSync(
-                `${globals.moduleDir}/gulp-task-template.js`,
-                'UTF-8'
-            );
+    globals.config = config;
 
-            if (!fs.existsSync(`${globals.cwd}/gulp-tasks/`)) {
-                fs.mkdirSync(`${globals.cwd}/gulp-tasks/`);
-            }
+    const tasksHelper = require('./helpers/tasks');
 
-            fs.writeFileSync(`${globals.cwd}/gulp-tasks/${taskName}.js`, taskTemplate);
-            log.warn(`No task for config ${taskName} found! A project related task file ${globals.cwd}/gulp-tasks/${taskName}.js was created.`);
-        }
-
-        // console.log(taskName);
-    }
+    tasksHelper.registerTasks(gulp, config.tasks);
+    tasksHelper.registerTasks(gulp, config.extraTasks);
 };

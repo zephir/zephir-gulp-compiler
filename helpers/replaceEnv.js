@@ -1,1 +1,1 @@
-module.exports = (string) => string.replace("{env}", global.env);
+module.exports = (string) => string.replace("{env}", globals.env);
