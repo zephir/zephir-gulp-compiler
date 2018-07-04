@@ -4,10 +4,25 @@
 $c: red;
 $w: 20px;
 
+:root {
+    font-size: 16px;
+}
+
 .foo {
     background-color: $c;
+    transition: .25s ease-in-out background-color;
+    font-size: 16px;
+
+    @media (min-width: 500px) {
+        content: "mq combine test";
+        font-size: 32px;
+    }
 
     .bar {
         padding: $w;
+
+        @media (min-width: 500px) {
+            content: "mq combine test 2";
+        }
     }
 }
