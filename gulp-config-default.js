@@ -19,13 +19,6 @@ module.exports = (gulp, imagemin) => {
         tasks: {
 
             css: {
-                cache: {
-                    enabled: true,
-                    config: {
-                        optimizeMemory: false // https://github.com/gulp-community/gulp-cached#possible-options
-                    }
-                },
-
                 sourcemaps: {
                     enabled: "local"
                 },
@@ -43,49 +36,16 @@ module.exports = (gulp, imagemin) => {
                     }
                 },
 
-                pxtorem: {
+                cleanCss: {
                     enabled: true,
                     config: {
-                        rootValue: 16,
-                        unitPrecision: 5,
-                        propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
-                        selectorBlackList: [],
-                        replace: false,
-                        mediaQuery: false,
-                        minPixelValue: 0
-                    } // https://github.com/cuth/postcss-pxtorem#options
-                },
-
-                cleancss: {
-                    enabled: true,
-                    config: {
-                        level: {
-                            2: {
-
-                                skipProperties: ['font-size']
-                            }
-                        }, // https://github.com/jakubpawlowicz/clean-css#optimization-levels
-                        compatibility: "*", // https://github.com/jakubpawlowicz/clean-css#compatibility-modes
-                        inline: ['local'] // https://github.com/jakubpawlowicz/clean-css#inlining-options
+                        level: 2, // https://github.com/jakubpawlowicz/clean-css#optimization-levels
+                        compatibility: "ie9"
                     }
                 }
             },
 
-            js: {
-                cache: {
-                    enabled: true,
-                    config: {
-                        optimizeMemory: false // https://github.com/gulp-community/gulp-cached#possible-options
-                    }
-                },
-
-                sourcemaps: {
-                    enabled: "local"
-                },
-
-
-
-            },
+            js: {},
 
             images: {},
 
@@ -105,14 +65,8 @@ module.exports = (gulp, imagemin) => {
         // These are all paths for the tasks output => input
         paths: {
             css: {
-                'dist/{env}/css/': [
+                'dist/{env}/main.css': [
                     'input/css/**/*.scss'
-                ]
-            },
-
-            js: {
-                'dist/{env}/js/script.js': [
-                    'input/js/**/*.js'
                 ]
             }
         },

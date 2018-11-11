@@ -19,7 +19,26 @@ module.exports = (gulp) => {
     globals.cwd = process.cwd();
     // Module dir (where this module is located)
     globals.moduleDir = __dirname;
+    // Project config
+    globals.projectConfigFile = `${globals.cwd}/gulp-config.json`;
+    // Tasks dir
+    globals.defaultTasksDir = `${globals.moduleDir}/tasks`;
+    // Project tasks dir
+    globals.projectTasksDir = `${globals.cwd}/gulp-tasks`;
 
+    // Get TaskHelper and add it to the globals object
+    let TaskHelper = require('./helpers/TaskHelper');
+    TaskHelper = new TaskHelper(gulp);
+
+    // Check if config exists in project folder
+    // if not, create default config from task configs
+    let ConfigHelper = require('./helpers/ConfigHelper');
+    ConfigHelper = new ConfigHelper(gulp);
+    globals.config = ConfigHelper.readConfig();
+
+    TaskHelper.registerTasks();
+
+    /*
     // Load the config
     // Pass gulp and imagemin for easier use in config
     const config = require('./helpers/config')(gulp, imagemin);
@@ -32,10 +51,10 @@ module.exports = (gulp) => {
         throw new Error(`Env ${globals.env} is not defined, you can use ${config.envs.join(', ')}!`);
     }
 
-    globals.config = config;
+    globals.config = config;*/
 
-    const tasksHelper = require('./helpers/tasks');
+    /*const tasksHelper = require('./helpers/tasks');
 
     tasksHelper.registerTasks(gulp, config.tasks);
-    tasksHelper.registerTasks(gulp, config.extraTasks);
+    tasksHelper.registerTasks(gulp, config.extraTasks);*/
 };
